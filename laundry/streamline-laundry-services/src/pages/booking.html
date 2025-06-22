@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Streamline Laundry Services</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>4 Na Maria Laundromat</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="registration.html">Register</a></li>
+                <li><a href="booking.html">Book Now</a></li>
+                <li><a href="invoice.html">Invoice</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h2>Book Your Laundry Service</h2>
+        <form id="booking-form">
+            <label for="service">Select Service:</label>
+            <select id="service" name="service" required>
+                <option value="wash">Wash</option>
+                <option value="wash-and-dry">Wash and Dry</option>
+                <option value="full-service">Full Service</option>
+            </select>
+
+            <label for="schedule-time">Schedule time:</label>
+            <input type="time" id="schedule time" name="schedule Time" required>
+            <button type="submit">Book Now</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Streamline Laundry Services. All rights reserved.</p>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/booking.js"></script>
+</body>
+</html>
