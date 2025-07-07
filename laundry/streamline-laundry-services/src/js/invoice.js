@@ -1,30 +1,43 @@
-// This file generates and displays the invoice for completed bookings, including itemized charges and payment details.
-
 document.addEventListener('DOMContentLoaded', function() {
-    const invoiceData = JSON.parse(localStorage.getItem('invoiceData')) || {};
-    const invoiceContainer = document.getElementById('invoice-container');
+    // Get the invoice_id from the URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const invoiceId = urlParams.get('invoice_id');
 
-    if (invoiceData) {
-        displayInvoice(invoiceData);
-    } else {
-        invoiceContainer.innerHTML = '<p>No invoice data available.</p>';
+    if (!invoiceId) {
+        document.getElementById('invoice-details').innerHTML = '<p>No Result: Please book a service first!</p>'; // Return an error if no invoice ID
+        return; // Stop execution if no invoice ID
     }
 
-    function displayInvoice(data) {
-        const { bookingId, services, totalAmount, paymentStatus } = data;
+    // Fetch invoice data for the specific invoice_id
+    // Ensure this path is correct relative to where your logic is located
+    fetch(`../php/invoice_display.php?invoice_id=${encodeURIComponent(invoiceId)}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+    .then(data => {
+        // If data is an empty array or has an 'error' property
+        if (data.length === 0 || data.error) {
+            document.getElementById('invoice-details').innerHTML = '<p>Invoice details not found or an error occurred.</p>';
+            return;
+        }
 
-        let servicesList = '';
-        services.forEach(service => {
-            servicesList += `<li>${service.name}: $${service.price}</li>`;
-        });
+        // Since you only expect one service per booking/invoice
+        const invoice = data[0]; // Get the first (and only) invoice object
 
-        invoiceContainer.innerHTML = `
-            <h1>Invoice</h1>
-            <p>Booking ID: ${bookingId}</p>
-            <h2>Services</h2>
-            <ul>${servicesList}</ul>
-            <h2>Total Amount: $${totalAmount}</h2>
-            <p>Payment Status: ${paymentStatus}</p>
-        `;
-    }
+        document.getElementById('invoice-number').textContent = invoice.invoice_no;
+        document.getElementById('invoice-date').textContent = invoice.booking_date; 
+
+        // Display the single service and its price
+        const serviceParagraph = document.getElementById('service');
+        serviceParagraph.innerHTML = `${invoice.service} - ₱${parseFloat(invoice.price).toFixed(2)}`;
+
+        // The total amount is simply the price of this single service
+        document.getElementById('total-amount').textContent = `₱${parseFloat(invoice.price).toFixed(2)}`;
+    })
+    .catch(error => {
+        document.getElementById('invoice-details').innerHTML = `<p>Error loading invoice: ${error.message}</p>`;
+    });
 });

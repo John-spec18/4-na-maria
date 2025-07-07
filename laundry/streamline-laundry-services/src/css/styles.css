@@ -1,7 +1,14 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
+/*===========GOOGLE FONTS=============*/
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+/*============= Global CSS ===============*/
+*{
+    font-family: 'Ubuntu', sans-serif;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     background-color:  #ffb700;
 }
 
@@ -23,7 +30,7 @@ h1 {
 }
 
 form {
-    background: #00184c; 
+    background: #3674B5; 
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -113,6 +120,73 @@ input[type="submit"]:hover {
 
 .table th {
     background: #ffb700;
+}
+
+.reg_btn{
+    width: 10%;
+    height: 45px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 500; 
+}
+
+.login_btn{
+    width: 10%;
+    height: 45px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 500;
+    margin-bottom: 10px; 
+}
+
+.book_btn{
+    width: 10%;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 500; 
+}
+
+.time_btn{
+    width: 10%;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 500; 
+}
+
+.forgot_btn{
+    width: 10%;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 500; 
+}
+
+.rst_btn{
+    width: 10%;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #162938;
+    font-weight: 500; 
 }
 
 @media (max-width: 600px) {
